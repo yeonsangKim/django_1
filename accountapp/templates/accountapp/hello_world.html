@@ -8,7 +8,14 @@
     <h1>
         HTTP METHOD
     </h1>
+    <form action="/accounts/hello_world/" method="post">
+        {% csrf_token %}
+        <input type="submit"class="btn btn-outline-danger rounded-pill px-5">
+
+    </form>
+
     <h3>{{ text }}</h3>
+{#get 방식이여서 views.py와 연동 , GET METHOD! 출력#}
 
 
 
