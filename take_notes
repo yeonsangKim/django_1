@@ -1,0 +1,6 @@
+GET,POST: 통신방식(클라이언트와 서버 間(사이 간))
+
+
+GET=HTTP://NAVER.COM/ ? ~~~~   ?~~~: GET방식,query방식
+
+POST=
