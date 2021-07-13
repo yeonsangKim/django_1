@@ -10,19 +10,24 @@
     </h1>
     <form action="/accounts/hello_world/" method="post">
         {% csrf_token %}
-        <input type="submit"class="btn btn-outline-danger rounded-pill px-5">
+        {#    에러방지#}
+
+        <input type="text" name="input_text">
+        <input type="submit" class="btn btn-outline-danger rounded-pill px-5">
+{# method="post" 때문에 views.py에 포스트가 전달되어서 post방식으로 바뀜       #}
 
     </form>
 
-    <h3>{{ text }}</h3>
+    <h3>{{ model_instance.text }}</h3>
 {#get 방식이여서 views.py와 연동 , GET METHOD! 출력#}
-
-
-
-
-
-</div>
+{# 기본방식 = get#}
+    </div>
 {% endblock %}
+
+
+
+
+
 
 
 
