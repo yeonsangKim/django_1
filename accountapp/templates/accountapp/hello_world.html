@@ -17,8 +17,11 @@
 {# method="post" 때문에 views.py에 포스트가 전달되어서 post방식으로 바뀜       #}
 
     </form>
+    {% for data in data_list  %}
 
-    <h3>{{ model_instance.text }}</h3>
+
+            <h3>{{ data.text }}</h3>
+    {% endfor %}
 {#get 방식이여서 views.py와 연동 , GET METHOD! 출력#}
 {# 기본방식 = get#}
     </div>
