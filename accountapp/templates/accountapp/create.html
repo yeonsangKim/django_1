@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
+
 
 {% block content %}
 
 
-    <div class="text-center">
+    <div class="text-center mw-500 m-auto">
             <div class="m-5">
                 <h4>Sign up</h4>
             </div>
             <div>
                 <form action="{% url 'accountapp:create' %}" method="post">     {# post방식 #}
                     {% csrf_token %}   {# 트리거 작용 #}
-                    {{ form }}          {# vies.py에 class AccountCreateView(CreateView)안에 있는 form_class = UserCreationForm가 기본적인 회원가입 형식을 보유  #}
-                    <div>
+                      {% bootstrap_form form %}
+          {# vies.py에 class AccountCreateView(CreateView)안에 있는 form_class = UserCreationForm가 기본적인 회원가입 형식을 보유  #}
+                    <div class=""m-5">
 
 
                     <input type="submit"    class="btn_dark rounded-pill px-5">         {# 버튼설정 #}
