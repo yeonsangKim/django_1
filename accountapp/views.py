@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import NEWMODEL
 from django.urls import reverse, reverse_lazy
@@ -31,3 +31,7 @@ class AccountCreateView(CreateView):        #회원가입 해주는 logic
     success_url =reverse_lazy('accountapp:hello_world')  #class와 function은 불러오는 방식이 달라서 reverse_lazy
     template_name = 'accountapp/create.html'
 
+class AccountDetailView(DetailView):            #내정보 보여주는 로직
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accoutapp/detail.html'

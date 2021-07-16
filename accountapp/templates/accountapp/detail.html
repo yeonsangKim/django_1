@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <div class="text-center mw-500 m-auto">
+            <div class="m-5">
+                <h4>{{ target_user.username }}</h4>  {# target_user를 통해 id출력 #}
+            </div>
+            <div>
+                {{ target_user.date_joined }} {# target_user를 통해 가입날짜 출력 #}
+            </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
