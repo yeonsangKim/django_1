@@ -33,5 +33,5 @@ class AccountCreateView(CreateView):        #회원가입 해주는 logic
 
 class AccountDetailView(DetailView):            #내정보 보여주는 로직
     model = User
-    context_object_name = 'target_user'
-    template_name = 'accoutapp/detail.html'
+    context_object_name = 'target_user'             #target_user룰 통해 연결해준다
+    template_name = 'accountapp/detail.html'

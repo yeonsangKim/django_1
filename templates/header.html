@@ -13,17 +13,24 @@
             </a>
         </span>
         <span>
-            <a href="{%  url 'accountapp:create' %}">
+           <a href="{%  url 'accountapp:create' %}">
                 SignUp
             </a>
         </span>
         {% else %}
-        <span>
+            <span>
+            <a href="{%  url 'accountapp:detail'  pk=user.pk %}">        {# 요청을 보내고있는 user의 primary key #}
+                MyPage
+            </a>
+            </span>
+
+            <span>
             <a href=" {% url "accountapp:logout" %}">
             Logout
 
             </a>
         </span>
+
         {% endif %}
     </div>
 
