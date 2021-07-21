@@ -1,6 +1,7 @@
+import self as self
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
@@ -50,18 +51,18 @@ class AccountUpdateView(UpdateView):
     template_name = 'accountapp/update.html'
 
     def get(self,request,*args,**kwargs):       #login 되어있으면 부모메서드 그대로 상속받기
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
 
             return super().get(request,*args,**kwargs)
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))        #안되어있으면  LOGIN페이지로 이동
+            return HttpResponseForbidden()     #Forbidden  page로 이동
 
     def post(self,request,*args,**kwargs):
         if request.user.is_authenticated:
 
             return super().post(request,*args,**kwargs)
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
 
 class AccountDeleteView(DeleteView):
@@ -72,16 +73,18 @@ class AccountDeleteView(DeleteView):
 
 
     def get(self,request,*args,**kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
 
             return super().get(request,*args,**kwargs)
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
-    def post(self,request,*args,**kwargs):
-        if request.user.is_authenticated:
+    def post(self,request,*args,**kwargs) :
+
+
+        if request.user.is_authenticated and self.get_object() == request.user:
 
             return super().post(request,*args,**kwargs)
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
