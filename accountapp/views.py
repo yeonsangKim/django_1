@@ -12,18 +12,22 @@ from django.urls import reverse, reverse_lazy
 
 
 def hello_world(request):
-    if request.method =="POST":
+    if request.user.is_authenticated:
+        if request.method =="POST":
 
-        temp=request.POST.get('input_text')
-        model_instance=NEWMODEL()
-        model_instance.text=temp
-        model_instance.save()
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))      ##class와 function은 불러오는 방식이 달라서 reverse_
+            temp=request.POST.get('input_text')
+            model_instance=NEWMODEL()
+            model_instance.text=temp
+            model_instance.save()
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))      ##class와 function은 불러오는 방식이 달라서 reverse_
+
+        else:
+            data_list=NEWMODEL.objects.all()
+            return render(request, 'accountapp/hello_world.html',
+                          context={'data_list' : data_list})
 
     else:
-        data_list=NEWMODEL.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'data_list' : data_list})
+        return HttpResponseRedirect(reverse('accountapp:login'))
 
 
 class AccountCreateView(CreateView):        #회원가입 해주는 logic
@@ -45,10 +49,39 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')        #hello world로 돌아가라
     template_name = 'accountapp/update.html'
 
+    def get(self,request,*args,**kwargs):       #login 되어있으면 부모메서드 그대로 상속받기
+        if request.user.is_authenticated:
+
+            return super().get(request,*args,**kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))        #안되어있으면  LOGIN페이지로 이동
+
+    def post(self,request,*args,**kwargs):
+        if request.user.is_authenticated:
+
+            return super().post(request,*args,**kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+
 class AccountDeleteView(DeleteView):
     model=User
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
 
+
+    def get(self,request,*args,**kwargs):
+        if request.user.is_authenticated:
+
+            return super().get(request,*args,**kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self,request,*args,**kwargs):
+        if request.user.is_authenticated:
+
+            return super().post(request,*args,**kwargs)
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
 
