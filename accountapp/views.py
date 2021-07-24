@@ -13,6 +13,9 @@ from accountapp.forms import AccountCreationForm
 from accountapp.models import NEWMODEL
 from django.urls import reverse, reverse_lazy
 
+from accountapp.decorators import account_ownership_required
+
+
 @login_required                     #(login_url=reverse_lazy('accountapp:login'))
 def hello_world(request):
 
@@ -45,8 +48,11 @@ class AccountDetailView(DetailView):            #내정보 보여주는 로직
     context_object_name = 'target_user'             #target_user룰 통해 연결해준다
     template_name = 'accountapp/detail.html'
 
-@method_decorator(login_required,'get')     #AccountUpdateView를 method로 변경login_required를 받아서
-@method_decorator(login_required,'post')
+
+has_ownership = [login_required, account_ownership_required]
+
+@method_decorator(has_ownership, 'get')     #AccountUpdateView를 method로 변경login_required를 받아서
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model=User
     form_class = AccountCreationForm
@@ -56,8 +62,10 @@ class AccountUpdateView(UpdateView):
 
 
 
-@method_decorator(login_required,'get')     #AccountUpdateView를 method로 변경login_required를 받아서
-@method_decorator(login_required,'post')
+     #AccountUpdateView를 method로 변경login_required를 받아서
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
+
 class AccountDeleteView(DeleteView):
     model=User
     context_object_name = 'target_user'
