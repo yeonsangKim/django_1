@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
@@ -11,9 +11,18 @@ from articleapp.models import Article
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'articleapp/create.html'
 
     def form_valid(self, form):
         form.instance.writer = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        from django.urls import reverse
+        return  reverse('articleapp:detail',kwargs={'pk':self.object.pk})
+    #reverse= method, reverse_lazy=class
+    #self.object== 'target_article'
+class ArticleDetailView(DetailView):
+    model=Article
+    context_object_name = 'target_article'
+    template_name = 'articleapp/detail.html'
