@@ -1,29 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
 {% include 'head.html' %}
 
+<body style=" font-family: 'Noto Serif',cursive ">
 
+{% include 'header.html' %}
 
-<body style="font-family: 'NanumSquareR'">
+<hr>
 
- {% include 'header.html' %}
-<hr>   {# hr 은 실선 그어준다. 헤더와 풋터 사이에 #}
 {% block content %}
 {% endblock %}
 
 <hr>
-{% include 'footer.html' %}
-<div class="text-center my-5">
-    <a href="{% url 'articleapp:create' %}"
-    class="btn btn-dark rounded-pill  material-icons">
-        brush
-    </a>
-    <a href="{% url 'articleapp:create' %}"
-    class="btn btn-outline-dark rounded-pill px-5">
-        Create ArTicle
-    </a>
 
-</div>
+{% include 'footer.html' %}
 
 </body>
+</html>
+
 
 
 
