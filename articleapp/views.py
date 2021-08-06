@@ -56,5 +56,5 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    paginate_by = 20
+    paginate_by = 1        #한면에 게시글 20개까지 가능
 
