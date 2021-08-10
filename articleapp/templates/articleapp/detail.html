@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
 
         <div class="container text-center">
             <div class="my-5">
-                {# 게시글 제목, 글쓴이, 작성일자 #}
+            {#      게시글 제목, 글쓴이, 작성일자      #}
                 <h1 class="NNS_B">{{ target_article.title }}</h1>
-                <h4>{{ target_article.writer.profile.nickname }}</h4>
-                <p>{{ target_article.created_at }}</p>
+            <h4>{{ target_article.writer.profile.nickname }}</h4>
+            <p>{{ target_article.created_at }}</p>
             </div>
 
             <hr>
@@ -16,13 +15,13 @@
 
             <div class="my-5">
                 {# 게시글 대표이미지, 글내용 #}
-                <img src="{{ target_article.image.url }}"
-                     class="article_image"
-                     alt="">
-                <div class="my-5 article_content">
-                    {{ target_article.content }}
-                </div>
-                {%if target_article.writer == user%}
+                 <img src="{{ target_article.image.url }}"
+                 class="article_image"
+                 alt="">
+            <div class="my-5 article_content">
+                {{ target_article.content }}
+            </div>
+            {% if target_article.writer == user %}
             <div>
                 <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                    class="btn btn-success rounded-pill px-5">
@@ -34,15 +33,14 @@
                 </a>
             </div>
             {% endif %}
-            </div>
-            <hr>
+        </div>
 
-            <div class="text-center my-4">
+        <hr>
 
-                {% include 'commentapp/create.html' %}
+        <div class="text-center my-4">
+            {#      댓글 내용, 댓글 작성창      #}
 
-
-            </div>
+            {% include 'commentapp/create.html' %}
 
         </div>
 
