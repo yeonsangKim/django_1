@@ -7,11 +7,11 @@ from articleapp.models import Article
 
 class Comment(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL,
-                                                related_name='comment', null=True)
-
+                               related_name='comment', null=True)
     article = models.ForeignKey(Article, on_delete=models.SET_NULL,
-                                                    related_name='comment', null=True)
+                                related_name='comment', null=True)
 
-    comment = models.TextField(null=False)        #장문의 글을 받을때, 짧은글은 charField
+    content = models.TextField(null=False)      #장문의 글을 받을때
+                                                                        #짧은글은 charfield
 
     created_at = models.DateTimeField(auto_now_add=True)
