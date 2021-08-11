@@ -3,7 +3,7 @@
     font-family: 'Noto Serif', serif ;
 }
 .ezirp_header_button{
-    margin-bottom: 2rem 0; font-family: 'Noto Serif', serif;
+    margin-bottom: 2rem ; font-family: 'Noto Serif', serif;
 
 }
 
@@ -53,4 +53,13 @@
     border-radius: 2rem;
     width:60%;
     box-shadow:0 0 1rem;
+}
+
+.comment_box {
+    text-align: left;
+    border: solid;
+    border-color: #dfdfdf;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
 }
