@@ -1,7 +1,6 @@
 <div style="text-align: center">
-    <div class="ezirp_header_logo">   {#margin:첫번째 숫자는 상하 , 두번째 숫자는 좌우 #}
-        <h1> ezirp </h1>
-
+    <div class="ezirp_header_logo">
+        <h1>ezirp</h1>
     </div>
     <div class="ezirp_header_button">
         <span>
@@ -14,6 +13,14 @@
                 Projects
             </a>
         </span>
+        {% if user.is_authenticated %}
+        <span>
+            <a href="{% url 'subscribeapp:list' %}">
+                Subscription
+            </a>
+        </span>
+        {% endif %}
+
         {% if not user.is_authenticated %}
         <span>
             <a href="{% url 'accountapp:login' %}">
