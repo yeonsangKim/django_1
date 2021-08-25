@@ -15,3 +15,4 @@ class Article(models.Model):          #게시글
     content = models.TextField(null=True)
 
     created_at = models.DateField(auto_now_add=True, null=True)    #db가 작성된 시간이 자동으로 저장
+    like = models.IntegerField(default=0)
