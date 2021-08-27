@@ -177,5 +177,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL=reverse_lazy('accountapp:hello_world')  #로그인 하면 헬로월드로 이동
+LOGIN_REDIRECT_URL=reverse_lazy('articleapp:list')  #로그인 하면 헬로월드로 이동
 LOGOUT_REDIRECT_URL=reverse_lazy('accountapp:login')            # 로그아웃하면 로그인으로 이동
