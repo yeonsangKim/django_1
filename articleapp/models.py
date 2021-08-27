@@ -5,7 +5,8 @@ from django.db import models
 # Create your models here.
 from projectapp.models import Project
 
-
+#null=True , db내에서의 공백허용
+#blank=True, 웹 페이지 내에서의 null값 허용
 class Article(models.Model):          #게시글
     writer = models.ForeignKey(User, on_delete=models.SET_NULL,
                                related_name='article', null=True)      #User  vs 다 로 연결시켜줌, SET_NULL= 작성자 비공개
