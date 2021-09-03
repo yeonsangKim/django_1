@@ -2,6 +2,8 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
+RUN echo "asdsd"
+
 RUN git clone https://github.com/yeonsangKim/django_1.git
 
 WORKDIR /home/django_1/
